@@ -29,23 +29,31 @@ medianSplit before after list =
       Nothing
     first :: rest ->
       let
-        (smaller, larger) = List.partition ((<) first) rest
+        (smaller, larger) = List.partition ((>) first) rest
         (beforeLen, afterLen) = (before + List.length smaller, after + List.length larger)
+        (left, right, remains) =
+          case compare beforeLen afterLen of
+            GT ->
+              (before, 1+afterLen, smaller)
+            LT ->
+              (1+beforeLen, after, larger)
+            EQ ->
+              (1+beforeLen, afterLen, [])
       in
-        case compare beforeLen afterLen of
-        GT ->
-          medianSplit before (1+afterLen) smaller
-        LT ->
-          medianSplit (1+beforeLen) after larger
-        EQ ->
-          Just first
-
+        if remains == []
+          then
+            Just first
+          else
+            medianSplit left right remains
 
 {-|
   Returns a median element.
 
     >>> median [1,2,3]
     Just 2
+
+    >>> median [1,1,8,1,1]
+    Just 1
 
     >>> median [1,2,3,4]
     Just 3
