@@ -1,0 +1,26 @@
+{
+  "name": "elm-median",
+  "version": "1.0.0",
+  "description": "Compute the median of a list of sortable elements.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "elm-test init && elm-doc-test && elm-test tests/Doc/Main.elm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lovasoa/elm-median.git"
+  },
+  "author": "",
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/lovasoa/elm-median/issues"
+  },
+  "homepage": "https://github.com/lovasoa/elm-median#readme",
+  "devDependencies": {
+    "elm-doc-test": "^2.2.3",
+    "elm-test": "^0.18.2"
+  }
+}
