@@ -46,8 +46,10 @@ medianSplit before after list =
           else
             medianSplit left right remains
 
-{-|
-  Returns a median element.
+{-| Returns a median element.
+
+The implementation has an average complexity of O(log(N)),
+and a worst-case complexity of O(N^2) (when the list is sorted).
 
     >>> median [1,2,3]
     Just 2
