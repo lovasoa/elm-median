@@ -59,14 +59,30 @@ medianSplit before after list =
 The implementation has an average complexity of O(log(N)),
 and a worst-case complexity of O(N^2) (when the list is sorted).
 
+If there is a single median element, then it is guarenteed to be returned
+
     >>> median [1,2,3]
     Just 2
+
+It works with any sortable type.
+That is with ints, floats, chars, strings, lists, and tuples.
+
+    >>> median ["Boris", "Arthur", "Adolf", "Jack", "Sarah"]
+    Just "Boris"
+
+    >>> median [(0,1), (0,2), (1,0)]
+    Just (0,2)
+
+If there is no single median element, it will return an element that most
+equally splits the list.
 
     >>> median [1,1,8,1,1]
     Just 1
 
     >>> median [1,2,3,4]
     Just 3
+
+If the given list is empty, it will return `Nothing`.
 
     >>> median []
     Nothing
