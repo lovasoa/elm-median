@@ -9,42 +9,50 @@ is **an element of the list** such that
 the difference between the number of elements smaller than `m`
 and the number of elements larger than `m` in `l` is minimal.
 
-# Find a madian
+# Find a median
 
 @docs median
 
 -}
 
+
 {-|
   Helper function.
   Takes a part of the list, the number of elements before the given part,
-  the number of elements after, and returns the median if there are 
+  the number of elements after, and returns the median if there are
   elements in the given part of the list.
   Otherwise, it returns `Nothing`.
 -}
 medianSplit : Int -> Int -> List comparable -> Maybe comparable
 medianSplit before after list =
-  case list of
-    [] ->
-      Nothing
-    first :: rest ->
-      let
-        (smaller, larger) = List.partition ((>) first) rest
-        (beforeLen, afterLen) = (before + List.length smaller, after + List.length larger)
-        (left, right, remains) =
-          case compare beforeLen afterLen of
-            GT ->
-              (before, 1+afterLen, smaller)
-            LT ->
-              (1+beforeLen, after, larger)
-            EQ ->
-              (1+beforeLen, afterLen, [])
-      in
-        if remains == []
-          then
-            Just first
-          else
-            medianSplit left right remains
+    case list of
+        [] ->
+            Nothing
+
+        first :: rest ->
+            let
+                ( smaller, larger ) =
+                    List.partition ((>) first) rest
+
+                ( beforeLen, afterLen ) =
+                    ( before + List.length smaller, after + List.length larger )
+
+                ( left, right, remains ) =
+                    case compare beforeLen afterLen of
+                        GT ->
+                            ( before, 1 + afterLen, smaller )
+
+                        LT ->
+                            ( 1 + beforeLen, after, larger )
+
+                        EQ ->
+                            ( 1 + beforeLen, afterLen, [] )
+            in
+                if remains == [] then
+                    Just first
+                else
+                    medianSplit left right remains
+
 
 {-| Returns a median element.
 
@@ -64,4 +72,5 @@ and a worst-case complexity of O(N^2) (when the list is sorted).
     Nothing
 -}
 median : List comparable -> Maybe comparable
-median = medianSplit 0 0
+median =
+    medianSplit 0 0

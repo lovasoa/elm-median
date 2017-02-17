@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "summary": "Compute the median of a list of sortable elements.",
     "repository": "https://github.com/lovasoa/elm-median.git",
     "license": "GPL3",
