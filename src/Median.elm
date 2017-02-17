@@ -56,7 +56,8 @@ medianSplit before after list =
 
 {-| Returns a median element.
 
-The implementation has an average complexity of O(log(N)),
+This implementation uses the [quickselect](https://en.wikipedia.org/wiki/Quickselect)
+algorithm, and thus has an average time complexity of O(N),
 and a worst-case complexity of O(N^2) (when the list is sorted).
 
 If there is a single median element, then it is guarenteed to be returned
